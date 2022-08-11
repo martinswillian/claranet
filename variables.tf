@@ -20,3 +20,7 @@ variable "private_subnets_cidr" {
   type        = list
   description = "The CIDR block for the private subnet"
 }
+
+variable "instance_type" {
+  type = string
+}

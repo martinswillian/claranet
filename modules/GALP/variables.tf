@@ -24,3 +24,7 @@ variable "availability_zones" {
   type        = list
   description = "The az that the resources will be launched"
 }
+
+variable "instance_type" {
+  type = string
+}
