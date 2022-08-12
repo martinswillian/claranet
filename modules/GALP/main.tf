@@ -239,7 +239,8 @@ data "aws_ami" "amazon-linux-2" {
 }
 
 resource "aws_instance" "ec2_private" {
-  count                       = "${length(var.private_subnets_cidr)}"
+  #count                       = "${length(var.private_subnets_cidr)}"
+  count                       = var.instance_http_count
   ami                         = data.aws_ami.amazon-linux-2.id
   instance_type               = "${var.instance_type}"
   subnet_id                   = "${element(aws_subnet.private_subnet.*.id, count.index)}"
@@ -249,7 +250,8 @@ resource "aws_instance" "ec2_private" {
 }
 
 resource "aws_instance" "ec2_public" {
-  count                       = "${length(var.public_subnets_cidr)}"
+  #count                       = "${length(var.public_subnets_cidr)}"
+  count                       = var.instance_bastion_count
   ami                         = data.aws_ami.amazon-linux-2.id
   instance_type               = "${var.instance_type}"
   subnet_id                   = "${element(aws_subnet.public_subnet.*.id, count.index)}"

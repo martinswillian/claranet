@@ -1,6 +1,6 @@
 //AWS
 region      = "us-east-1"
-environment = "galp"
+environment = "galp" //also used for name
 
 /* VPC */
 vpc_cidr             = "10.0.0.0/16"
@@ -9,3 +9,7 @@ private_subnets_cidr = ["10.0.48.0/20", "10.0.64.0/20", "10.0.80.0/20"] //List o
 
 /* EC2 */
 instance_type = "t2.micro"
+instance_http_count = "2"
+instance_bastion_count = "2"
+cidr_block = ""
+vpc_id = ""

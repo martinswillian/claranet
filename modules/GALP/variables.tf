@@ -28,3 +28,11 @@ variable "availability_zones" {
 variable "instance_type" {
   type = string
 }
+
+variable "instance_http_count" {
+  default = "1"
+}
+
+variable "instance_bastion_count" {
+  default = "1"
+}

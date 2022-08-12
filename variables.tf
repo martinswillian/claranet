@@ -1,26 +1,33 @@
+#AWS
 variable "region" {
-  description = "us-east-1"
 }
 
 variable "environment" {
-  description = "The Deployment environment"
 }
 
-//Networking
+#Networking
 variable "vpc_cidr" {
-  description = "The CIDR block of the vpc"
 }
 
 variable "public_subnets_cidr" {
   type        = list
-  description = "The CIDR block for the public subnet"
 }
 
 variable "private_subnets_cidr" {
   type        = list
-  description = "The CIDR block for the private subnet"
 }
 
-variable "instance_type" {
-  type = string
+#EC2
+variable "vpc_id" {}
+
+variable "cidr_block" {}
+
+variable "instance_type" {}
+
+variable "instance_http_count" {
+  default = "1"
+}
+
+variable "instance_bastion_count" {
+  default = "1"
 }
