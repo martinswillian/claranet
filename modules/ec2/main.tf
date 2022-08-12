@@ -102,10 +102,19 @@ data "aws_ami" "amazon-linux-2" {
   }
 }
 
+data "aws_ami" "packer" {
+  most_recent = true
+  owners      = ["self"]
+
+  filter {
+    name   = "name"
+    values = ["${var.environment}*"]
+  }
+}
+
 resource "aws_instance" "ec2_private" {
-  #count                       = "${length(var.private_subnets_cidr)}"
   count                       = var.instance_http_count
-  ami                         = data.aws_ami.amazon-linux-2.id
+  ami                         = data.aws_ami.packer.id
   instance_type               = "${var.instance_type}"
   subnet_id                   = flatten("${var.subnet_id_private}")[count.index]
   vpc_security_group_ids      = [aws_security_group.sg_private.id]
@@ -119,7 +128,6 @@ resource "aws_instance" "ec2_private" {
 }
 
 resource "aws_instance" "ec2_public" {
-  #count                       = "${length(var.public_subnets_cidr)}"
   count                       = var.instance_bastion_count
   ami                         = data.aws_ami.amazon-linux-2.id
   instance_type               = "${var.instance_type}"

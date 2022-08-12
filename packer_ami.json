@@ -1,0 +1,33 @@
+{
+    "builders": [
+        {
+            "ami_name": "{{user `environment`}}-{{timestamp}}",
+            "instance_type": "t2.micro",
+            "region": "{{user `region`}}",
+            "source_ami_filter": {
+              "filters": {
+              "virtualization-type": "hvm",
+              "name": "amzn2-ami-hvm*",
+              "root-device-type": "ebs"
+              },
+              "owners": ["amazon"],
+              "most_recent": true
+            },
+            "ssh_username": "ec2-user",
+            "type": "amazon-ebs"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "./packer_setup_ami.sh"
+        }
+    ],
+    "post-processors": [
+      {
+        "output": "manifest.json",
+        "strip_path": true,
+        "type": "manifest"
+      }
+    ]
+}
