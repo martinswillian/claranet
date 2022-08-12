@@ -1,7 +1,3 @@
-/*resource "random_id" "random_id_prefix" {
-  byte_length = 2
-}*/
-
 locals {
   availability_zones = ["${var.region}a", "${var.region}b", "${var.region}c"]
 }
